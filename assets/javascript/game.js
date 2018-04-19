@@ -22,21 +22,39 @@ var output = "";
 var userGuess = "";
 //create a variable to hold wrong guesses
 var wrong = "";
+//create a variable to hold used letters
+var usedLetters = [];
 
 //create a function to display "_" for each letter in the randomly chosen word
 var initialView = function(){
     //for loop that creates a "_" for each letter in the word
     for (var i=0; i < answerLength; i++) {
-        //for each i above, display "_"
+        //for each i above, display "_ "
         display[i]="_ ";
-        //add this "_" to the output for each i above
-        output = output + display[i];
+        //add this "_ " to the output for each i above i.e. for each letter in the word
+        output += display[i];
     }
     //display the resultant output in the div with id=gameDisplay
     document.getElementById("gameDisplay").innerHTML = output;
+    document.getElementById("wrongLetterBox").innerHTML = wrong;
     document.getElementById("guessBox").innerHTML = "you have " + guesses + " guesses left.";
     //reset output
     output = "";
+}
+
+var resetVars =function(){
+    words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman"];
+    choice = Math.floor(Math.random()*7);
+    answer = words[choice];
+    answerLength = answer.length;
+    guesses = answerLength + 6;
+    g2Win = answerLength;
+    ansLetters = answer.split('');
+    display = [answerLength];
+    output = "";
+    userGuess = "";
+    wrong = "";
+    usedLetters = [];   
 }
 
 window.onload = function(){
@@ -44,6 +62,17 @@ window.onload = function(){
 }
 //create function that runs when the user keys a guess
 document.onkeyup = function(event){
+    if (g2Win<1){
+        resetVars();
+        initialView();
+        return;
+    }
+    else if (guesses<1){
+        resetVars();
+        initialView();
+        return;
+    }
+
     output="";
     //wrong="";
     //store this value as userGuess
@@ -52,6 +81,15 @@ document.onkeyup = function(event){
     userGuess.toLowerCase();
     //add letter to wrong guess collection
     wrong = wrong + userGuess + " ";
+
+for (var c=0; c < usedLetters.length; c++){
+    if (userGuess == usedLetters[c]){
+    alert("This letter has already been guessed");
+    wrong = wrong.replace(userGuess, "");
+    return;
+}
+
+}
     //for loop that compares user guess to each element of ansLetters (random word broken into array of constituent letters)
     for (var d=0; d < answerLength; d++){
         //compare userGuess to each letter of the answer: if it matches,
@@ -64,8 +102,8 @@ document.onkeyup = function(event){
             wrong = wrong.replace(userGuess, "");
         }
         //change output to reflect correct guess
-        output = output + display[d] + " ";
-        
+        output += display[d] + " ";
+        usedLetters.push(userGuess);
         }
 
         //decrease number of available guesses by one    
@@ -82,12 +120,12 @@ document.onkeyup = function(event){
 
         //check if the user wins (the condition for this is if there are fewer than 1 guesses needed to win)
         if (g2Win < 1){
-            alert("You Win!!!!");
-            initialView();
+            wins++;
+            document.getElementById("guessBox").innerHTML = "you win!!";
         }
 
         else if (guesses < 1){
-            alert("You Lose.")
+            document.getElementById("guessBox").innerHTML = "you lose...";
         }
     
 }
