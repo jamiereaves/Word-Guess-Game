@@ -98,7 +98,7 @@ so content displays like a row rather than a column and center content. auto mar
 set shadow to give a little texture and match logo shadow*/
 #mainContent{
     width:90%;
-    min-height:400px;
+    min-height:440px;
     background: #ffd600;
     border-radius: 10px;
     border-color: #ff0000;

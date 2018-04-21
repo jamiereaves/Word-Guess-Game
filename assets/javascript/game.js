@@ -1,5 +1,5 @@
 //create an array of potential answers and assign to the variable words
-var words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman", "puddy", "pez"];
+var words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman", "puddy", "pez", "schnapps", "fdr", "cosmo", "assman", "shrinkage", "devils", "babu"];
 //create an array of associated hint images
 var hints =["assets/images/jerryhint.gif", 
 "assets/images/elainehint.gif", 
@@ -9,10 +9,17 @@ var hints =["assets/images/jerryhint.gif",
 "assets/images/kramerhint.gif", 
 "assets/images/newmanhint.gif", 
 "assets/images/puddyhint.gif", 
-"assets/images/pezhint.gif"
+"assets/images/pezhint.gif", 
+"assets/images/schnappshint.gif",
+"assets/images/fdrhint.gif",
+"assets/images/cosmohint.gif",
+"assets/images/assmanhint.gif", 
+"assets/images/shrinkagehint.gif", 
+"assets/images/devilshint.gif",
+"assets/image/babuhint.gif"
 ];
 //generate a random number between 0 and the highest array index.  assign this to the variable choice
-var choice = Math.floor(Math.random()*9);
+var choice = Math.floor(Math.random()*16);
 //use this random number to select an element of the array. assign this to the variable answer.
 var answer = words[choice];
 //determine the length of the chosen word. assign this to the variable answerLength.
@@ -64,8 +71,8 @@ var initialView = function(){
 
 //function called resetVars that resets the global variables.
 var resetVars =function(){
-    words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman", "puddy", "pez"];
-    choice = Math.floor(Math.random()*9);
+    words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman", "puddy", "pez", "schnapps", "fdr", "cosmo", "assman", "shrinkage", "devils", "babu"];
+    choice = Math.floor(Math.random()*16);
     answer = words[choice];
     answerLength = answer.length;
     guesses = answerLength + 6;
