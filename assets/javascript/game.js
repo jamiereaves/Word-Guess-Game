@@ -1,5 +1,5 @@
 //create an array of potential answers and assign to the variable words
-var words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman"];
+var words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman", "puddy", "pez"];
 //create an array of associated hint images
 var hints =["assets/images/jerryhint.gif", 
 "assets/images/elainehint.gif", 
@@ -7,10 +7,12 @@ var hints =["assets/images/jerryhint.gif",
 "assets/images/festivushint.gif", 
 "assets/images/froggerhint.gif",
 "assets/images/kramerhint.gif", 
-"assets/images/newmanhint.gif"
+"assets/images/newmanhint.gif", 
+"assets/images/puddyhint.gif", 
+"assets/images/pezhint.gif"
 ];
 //generate a random number between 0 and the highest array index.  assign this to the variable choice
-var choice = Math.floor(Math.random()*7);
+var choice = Math.floor(Math.random()*9);
 //use this random number to select an element of the array. assign this to the variable answer.
 var answer = words[choice];
 //determine the length of the chosen word. assign this to the variable answerLength.
@@ -33,6 +35,9 @@ var userGuess = "";
 var wrong = "";
 //create a variable to hold used letters
 var usedLetters = [];
+//create a variable to hold victory/defeat music
+var victory = new Audio("assets/images/winner.mp3");
+var defeat = new Audio("assets/images/loser.mp3");
 
 //create a function to display "_" for each letter in the randomly chosen word
 var initialView = function(){
@@ -45,8 +50,9 @@ var initialView = function(){
     }
     //display the resultant output in the div with id=gameDisplay
     document.getElementById("gameDisplay").innerHTML = output;
-    document.getElementById("wrongLetterBox").innerHTML = wrong;
+    //display the initial number of guesses in the div with id=guessBox
     document.getElementById("guessBox").innerHTML = "guesses remaining: " + guesses;
+    //display initial instructions in div with id=messageBox
     document.getElementById("messageBox").innerHTML = "press any key to guess a letter and start the game";
     //display number of wins
     document.getElementById("winBox").innerHTML = "number of wins: " + wins;
@@ -58,8 +64,8 @@ var initialView = function(){
 
 //function called resetVars that resets the global variables.
 var resetVars =function(){
-    words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman"];
-    choice = Math.floor(Math.random()*7);
+    words = ["jerry", "elaine", "costanza", "festivus", "frogger", "kramer", "newman", "puddy", "pez"];
+    choice = Math.floor(Math.random()*9);
     answer = words[choice];
     answerLength = answer.length;
     guesses = answerLength + 6;
@@ -87,7 +93,7 @@ var resetTriggers = function(){
         }
     }
 
-//function called hintClick that changes the default image to an image of a hint
+//function called hintClick that changes the default image to an image of a hint for any given answer
 var hintClick = function(){
     for (var a=0; a < words.length; a++){
         if (answer == words[a]){
@@ -114,7 +120,9 @@ document.onkeyup = function(event){
     userGuess = keyPress.toLowerCase();
     //call program resetTriggers
     resetTriggers();
+    //hide instructions during gameplay
     document.getElementById("messageBox").style.visibility= "hidden";
+    //reset output so it doesn't keep adding to the gameDisplay
     output="";
     //add letter to wrong guess collection
     wrong = wrong + userGuess + " ";
@@ -122,7 +130,10 @@ document.onkeyup = function(event){
     for (var c=0; c < usedLetters.length; c++){
         if (userGuess == usedLetters[c]){
         alert("This letter has already been guessed");
+        //remove this guess from the variable wrong so there aren't duplicates in the wrong letter
+        //box
         wrong = wrong.replace(userGuess, "");
+        //exit function
         return;
         }
     
@@ -156,22 +167,42 @@ document.onkeyup = function(event){
     /*check if the user wins (the condition for this is if there are fewer than 1 
     guesses needed to win)*/
     if (g2Win < 1){
+        //add to win counter
         wins++;
+        //update win counter display
+        document.getElementById("winBox").innerHTML = "number of wins: " + wins;
+        //make message box visible for win message
         document.getElementById("messageBox").style.visibility= "visible";
+        //set text for win message
         document.getElementById("messageBox").innerHTML = "you win!! press any key to play again.";
+        //hide the hint button
         document.getElementById("hintButton").style.display = "none";
-        document.getElementById("gameImg").src = "https://m.popkey.co/39c1bf/EG0yM.gif"
+        //change image to celebration image
+        document.getElementById("gameImg").src = "assets/images/winner.gif";
+        //play victory music
+        victory.play();
         }
-
+    /*check if the user has lost (i.e. fewer than one guess available). if time allows, would like
+    to add condition for unwinnable game (g2Win<guesses +1)*/
     else if (guesses < 1){
+        //make message box visible for loss message
         document.getElementById("messageBox").style.visibility= "visible";    
+        //set text for loss message
         document.getElementById("messageBox").innerHTML = "you lose...press any key to play again";
+        //hide hint button
         document.getElementById("hintButton").style.display = "none";
+        //change image to consolation image
+        document.getElementById("gameImg").src = "assets/images/loser.gif";
+        //play defeat music
+        defeat.play();
         }
+    /*check if the user needs a hint (if the guesses to win is equal to (or one less than in the 
+    case of repeat letters) the guesses left)*/    
     else if (g2Win >= guesses){
+        //reveal hint button
         document.getElementById("hintButton").style.display = "inline-block";
-        document.getElementById("gameImg").src = "https://media.giphy.com/media/SQVVI1oRbVZSM/giphy.gif"
-
+        //change image to hint encouragement image
+        document.getElementById("gameImg").src = "assets/images/hint.gif"
         }   
     
 }

@@ -1,13 +1,15 @@
+/*set page backround color to the teal from the seinfeld logo*/
 body{
     background:#00c9d7;
 }
-
+/*header is as wide as the page and 150px high. set background color to match the background of groupShot*/
 header{
     width:100%;
     height: 150px;
     background: #fdfdfd;
 }
-
+/*parent box for header content. as wide/high as it's parent. display and justified to position
+child elements appropriately. set a thin red bottom border.*/
 .headerContent{
     width:100%;
     height: 100%;
@@ -19,7 +21,8 @@ header{
     border-bottom-color: #ff0000;
     border-bottom-width: 2px;
 }
-
+/*parent box for logo is 25% as wide as parent container and 100% as tall. display:flex/justify center
+to position logo appropriately as browser window changes width.*/
 #headerLogo{
     width:25%;
     height: 100%;
@@ -28,13 +31,16 @@ header{
     justify-content: center;
     overflow: hidden;
 }
-
+/*seinfeld logo is 80% as wide as parent. auto height so it scales as browser width changes. auto
+margins to space appropriately*/
 #seinfeld{
     width:80%;
     height:auto;
     margin:auto;
 }
-
+/*headerText container takes up 40% parent container width and 100% height. set default font family
+(closest free version i could find to logo font)/size/style/color. set text shadow to mirror logo font.
+center text and adjust padding to position vertically*/
 #headerText{
     width: 40%;
     height:100%;
@@ -46,7 +52,9 @@ header{
     text-align: center;
     padding: 50px 5px 0 0;
 }
-
+/*set width to just over a third of parent container. height = parent container height. 
+auto margins l/r to space appropriately. display flex etc so child image aligns properly
+for scaling as browser width changes*/
 #headerImg{
     width:35%;
     height:100%;
@@ -56,14 +64,18 @@ header{
     flex-direction: column;
     justify-content: end;
 }
-
+/*groupShot takes up entire parent. scales to browser width (height:auto)*/
 #groupShot{
     width:100%;
     height: auto;
 }
-
+/*messageBox is 60% as wide as body. set min width to 345x px. set height to 50px. set background to match yellow from logo.
+set border style. border color matches red from logo. round corners. auto l/r margins to center on page. 10px t/b margins to
+ buffer. set custom font color/style/size/spacing. set padding to position text. set shadow to give a little texture and match 
+ logo shadow*/
 #messageBox{
     width:60%;
+    min-width: 345px;
     height:50px;
     background: #ffd600;
     border-radius: 10px;
@@ -75,31 +87,37 @@ header{
     font-size: 1em;
     font-style: normal;
     text-align: center;
-    padding:10px 5px 0 5px;
+    line-height: 1.7em;
+    padding:5px;
     margin: 10px auto;
-
- 
+    box-shadow: 2px 2px 1px 0px rgb(2, 21, 22);
 }
-
+/*mainContent is 90% as wide as body. set min height to 400 px set background to match yellow from logo.
+set border style. border color matches red from logo. round corners. set display to flex/direction to row
+so content displays like a row rather than a column and center content. auto margins to center on page.
+set shadow to give a little texture and match logo shadow*/
 #mainContent{
     width:90%;
-    height:400px;
+    min-height:400px;
     background: #ffd600;
     border-radius: 10px;
     border-color: #ff0000;
     border-style: solid;
     border-width: 4px;
-   /* background: yellow;
-    border-bottom-left-radius: 25% 100%;
-    border-bottom-right-radius: 75% 90%;
-    border-top-left-radius: 75% 90%;
-    border-top-right-radius: 25% 100%;*/
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: auto;
+    box-shadow: 4px 4px 2px 0px rgb(2, 21, 22);
 }
-
+/*clearfix hack for mainContent*/
+#mainContent::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+/*set left side of content to 50% of parent width and 100% parent height. no margins so it lies
+flush with right side. set display so that children stack like a column and center*/
 #leftSide{
     width:50%;
     height: 100%;
@@ -108,19 +126,38 @@ header{
     justify-content: center;
     margin:0;
 }
-
+/*clearfix hack for leftSide.*/
+#leftSide::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+/*set photoBox to be 80% as wide as the parent container. set height to auto so it scales to browser width
+ and set max-height to limit size of images. hide overflow. set background color to border color to avoid
+ weird gaps between image and border. set border style/shadow/etc... round corners. set top/bottom margin
+ to space vertically when hint button is visible. set l/r margins to auto to center within parent.*/
 #photoBox{
     width:80%;
     height:auto;
+    max-height:300px;
     overflow: hidden;
-    margin:auto;
+    margin:20px auto auto auto;
+    background: #ff0000;
+    border-color: #ff0000;
+    border-style:solid;
+    border-width: 4px 4px 2px 4px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px 0px black;
+    margin: 20px auto;   
 }
-
+/*set gameImg to take up entire parent container*/
 #gameImg{
     width:100%;
     height:100%;
 }
-
+/*set right side of content to 50% of parent width and 100% parent height. no margins so it lies
+flush with left side. set display so that children stack like a column and center. set default font
+size/style/etc... for gameDisplay and wrong letters.*/
 #rightSide{
     width:50%;
     height:100%;
@@ -135,43 +172,159 @@ header{
     text-shadow: 1px 1px 1px black;
     text-align: center;
 }
-
-.rightSide::after {
+/*clearfix hack for right side to prevent overflow*/
+#rightSide::after {
     content: "";
     clear: both;
     display: table;
 }
-
+/*set font size/style/etc... for win counter, guess counter and title of wrong letter box.
+set height.*/
 #guessBox, #winBox, #titleBox {
     font-family: "Press Start 2P", cursive;
     font-size: 0.2em;
     font-style: normal;
-    /*text-align: left;*/
+    line-height: 3em;
+    text-align: center;
     height:10%;
 }
-
+/*add top margin to give a little space at the top of the right side of the main content.
+center otherwise.*/
 #winBox {
     margin: 20px auto auto auto;
 }
-
+/*set height of gameDisplay box. set padding to give appropriate space*/
 #gameDisplay {
     height: 45%;
     padding: 140px 0 0 0;
 }
-
+/*set height of wrongLetterBox and font size for wrong letters*/
 #wrongLetterBox {
     height: 25%;
     font-size: 38px;
 }
-
+/* for hint button. remove default blue outline border. set background/font colors.
+set font size. set padding to size appropriately. center text. set margins to center button
+and give space when visible. set display to none so it's invisible and doesn't take up space set border 
+color/width and round corners. set subtle black shadow.*/
 #hintButton {
-    height:20%;
+    outline: none;
+    width:40%;
+    min-width: 120px;
+    height:40px;
     background:#00c9d7;
     color: #ff0000;
     font-family: "Press Start 2P", cursive;
     font-size: 0.2em;
     font-style: normal;
     display:none;
-    /*text-align: left;*/
+    text-align: center; 
+    border-color:#ff0000;
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px 0px black;
+    margin: 20px auto;
+}
+/*for hint button when HOVER. set a more pronounced shadow to "raise" the
+button and indicate the user can click.*/
+#hintButton:hover {
+    box-shadow: 3px 3px 2px 0px black;
+}
+/*for hint button when ACTIVE. restore default shadow to "lower" button and
+create a click effect*/
+#hintButton:active {
+    box-shadow: 2px 2px 1px 0px black;
+}
+/*set spacer height and width*/
+#spacer{
+    width:100%;
+    height:50px;
+}
+
+/*sets parameters for small screen widths*/
+@media only screen and (max-width:640px) {
+    /*decrease header height and set a min. width*/
+    header{
+        height:80px;
+        min-width: 363px;
+    }
+    /*decrease font size and padding to center header text*/
+    #headerText{
+        font-size: 28px;
+        padding: 25px 5px 0 0;
+    }
+    /*decrease line height of alert messages to make sure they fit in a narrower box*/
+    #messageBox{
+    line-height: 1.15em;
+    padding:5px 5px 7px 5px;
+    }
+    /*change the flex-direction so the elements of the main content all align vertically. set 
+    new width for smaller screens and establish a min. width*/
+    #mainContent{
+        flex-direction: column;
+        width: 80%;
+        min-width: 345px;
+    }
+    /*increase width of left and right side content to take up entire box since they stack
+    vertically now*/
+    #leftSide{
+        width:100%;
+    }
+
+    #rightSide{
+        width:100%;
+    }
+    /*change padding/font size of gameDisplay so that it fits the new, smaller area.*/
+    #gameDisplay{
+        padding: 10px 0 0 0;
+        font-size:42px;
+    }
+    /*give wrongLetterBox a height so that the size of the main content box doesn't change
+    when letters are initially added*/
+    #wrongLetterBox{
+        height:60px;
+    }
+}
+
+/*media queries for mid sized screen widths*/
+@media only screen and (min-width:641px) and (max-width:768px) {
+    /*decrease header height slightly*/
+    header{
+        height: 100px;
+    }
+    /*adjust font size and padding so headerText is centered appropriately*/
+    #headerText{
+        font-size: 42px;
+        padding: 30px 5px 0 0;
+    }
+    /*set a min. width for the alert box*/
+    #messageBox{
+        min-width:435px;
+    }
+    /*change font size of gameDisplay to avoid the word breaking up into two lines*/
+    #gameDisplay{
+        font-size:42px;
+    }
+}
+
+@media only screen and (min-width:980px){
+    /*shrinks messageBox and sets a min/max for large screens*/
+    #messageBox {
+        height: 25px;
+        min-width:850px;
+        max-width:950px;
+        }
+}
+
+/*increase the height of the header and the padding of the text to maintain appearance of
+header for v. large screens*/
+@media only screen and (min-width:1100px){
+    header{
+        height:180px;
+    }
+
+    #headerText{
+        padding:70px 5px 0 0;
+    }
 
 }

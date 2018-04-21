@@ -18,16 +18,20 @@
 <body>
     <!--header for the page with the game's title-->
     <header>
+        <!--container for header content-->
         <div class=headerContent>
+            <!--container for seinfeld logo-->
             <div id=headerLogo>
-                 <img id=seinfeld src="assets/images/logo.png">
+                <!--link to appropriate image--> 
+                <img id=seinfeld src="assets/images/logo.png">
             </div>
-        
+            <!--box for header text-->
             <div id=headerText>
                 Word Game!
             </div>
-
+            <!--box for header image-->
             <div id=headerImg>
+                <!--link to appropriate image-->
                 <img id=groupShot src="assets/images/headerImg.png">
             </div>
         </div>
@@ -40,7 +44,7 @@
        
         <!--container for the game itself-->
         <div id=mainContent>
-
+            <!--container for left side of the main container-->
             <div id=leftSide>
                 <!--container for word related images-->
                 <div id=photoBox>
@@ -49,7 +53,7 @@
                 <!--hint button-->
                 <button type="button" onclick="hintClick()" id=hintButton>need a hint?!</button>
             </div>
-
+            <!--container for right side of the main container-->
             <div id=rightSide>
                     
                     <!-- container for win counter-->
@@ -64,7 +68,7 @@
                     <div id=gameDisplay>
 
                     </div>
-                    
+                    <!--container for wrong letter title-->
                     <div id=titleBox>wrong letters guessed:</div>
                     <!--container for incorrect letters that have been guessed-->
                     <div id=wrongLetterBox>
@@ -73,6 +77,8 @@
             </div>
         
         </div>
+        <!--spacer so content doesn't stick to the bottom of the page-->
+        <div id=spacer></div>
 
 </body>
 </html>
