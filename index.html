@@ -4,12 +4,13 @@
         <meta charset="UTF-8">
         <!--set the viewport so the page displays across devices correctly-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--meta http-equiv="X-UA-Compatible" content="ie=edge"-->
         <!--links to style and reset css files-->
-        <link rel="stylesheet" type="text/css" src="assets/css/reset.css">
-        <link rel="stylesheet" type="text/css" src="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <!--link to javascript file-->
         <script src="assets/javascript/game.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Oranienbaum|Press+Start+2P" rel="stylesheet">
         <title>Homework #3</title>
     </head>
 
@@ -17,30 +18,61 @@
 <body>
     <!--header for the page with the game's title-->
     <header>
-        <h1>
-            Seinfeld Word Guess Game!
-        </h1>
+        <div class=headerContent>
+            <div id=headerLogo>
+                 <img id=seinfeld src="assets/images/logo.png">
+            </div>
+        
+            <div id=headerText>
+                Word Game!
+            </div>
+
+            <div id=headerImg>
+                <img id=groupShot src="assets/images/headerImg.png">
+            </div>
+        </div>
     </header>
-    <!--box for main content-->
+    <!--box for game messages-->
+        <div id=messageBox>
+
+        </div>
     
        
         <!--container for the game itself-->
-        <div id=gameDisplay>
+        <div id=mainContent>
 
-        </div>
-        <!--container for wrong guesses-->
-        <div id=guessBox>
+            <div id=leftSide>
+                <!--container for word related images-->
+                <div id=photoBox>
+                    <img id=gameImg>
+                </div>
+                <!--hint button-->
+                <button type="button" onclick="hintClick()" id=hintButton>need a hint?!</button>
+            </div>
 
-        </div>
-        <!--container for used letters-->
-        <div id=wrongLetterBox>
+            <div id=rightSide>
+                    
+                    <!-- container for win counter-->
+                    <div id=winBox>
 
-        </div>
- <!--container for word related images-->
- <div id=photoBox>
+                    </div>
+                    <!--container for guesses remaining counter-->
+                    <div id=guessBox>
+
+                    </div>
+                    <!--container for hangman style display-->
+                    <div id=gameDisplay>
+
+                    </div>
+                    
+                    <div id=titleBox>wrong letters guessed:</div>
+                    <!--container for incorrect letters that have been guessed-->
+                    <div id=wrongLetterBox>
             
-</div>
-
+                    </div>
+            </div>
+        
+        </div>
 
 </body>
 </html>
