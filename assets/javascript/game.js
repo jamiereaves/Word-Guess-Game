@@ -16,7 +16,7 @@ var hints =["assets/images/jerryhint.gif",
 "assets/images/assmanhint.gif", 
 "assets/images/shrinkagehint.gif", 
 "assets/images/devilshint.gif",
-"assets/image/babuhint.gif"
+"assets/images/babuhint.gif"
 ];
 //generate a random number between 0 and the highest array index.  assign this to the variable choice
 var choice = Math.floor(Math.random()*16);
